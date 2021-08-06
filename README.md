@@ -1,4 +1,4 @@
-# CSI-2314A
+# CRM-2314A
 Final Creative Project for the class Crime and the Media
 Sources:
 https://www.marieclaire.com.au/sexism-and-video-games
