@@ -1,0 +1,358 @@
+<!-- Written by Ryan Matte -->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>Creative Project: Ryan Matte</title>
+</head>
+<body >
+<nav id="navbar-example2" class="navbar navbar-dark bg-dark px-3" style="position:fixed; width: 100%; top: 0">
+    <h3 class="navbar-brand">The Evolution of Video Games and Hegemonic Masculinity</h3>
+    <ul class="nav nav-pills" style="margin-right: 40%">
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading1">Part 1: Intro</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading2">Part 2: Early Gaming</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading3">Part 3: A new Era</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading4">Part 4: Online Gaming</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#scrollspyHeading5">Part 5: Retaliation</a>
+        </li>
+    </ul>
+</nav>
+<div class="container-lg">
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0" style="margin-top: 70px">
+    <h2 id="scrollspyHeading1" style="background-color: gainsboro">Early Computer Science, and the role of women in the development of computers</h2>
+
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Ada Lovelace and the Introduction of Computer Science
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.
+                <img src="images/ada.jpg">
+
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    The rise of Computers and the Programmers at Nasa
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <p>Here is the famous photo of Margaret Hamilton, who actually led the Software team that landed the Astronauts on the moon. Here she is depicted with her thousands of lines of code that ran calculations for the trajectory of the craft. It was even able to recognize faults made by the Astronauts and correct for them accordingly. Her work laid the foundation for the Software Engineering profession and helped grow the need for computers </p>
+                    <img src="images/margaret.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Pong Demo and the rise of the family home console gaming
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <p>There is now the advent of a new and exciting technology referred to as video games. Here is a quick example with pong. Credits to straker on  <a href="https://gist.github.com/straker/81b59eecf70da93af396f963596dfdc5">Github</a></p>
+                    <p>You can control the left paddle with "s" and "w" and the right paddle with the up and down arrow keys</p>
+                    <canvas width="750" height="585" id="game" style=" background: black;"></canvas>
+                    <script>
+                        const canvas = document.getElementById('game');
+                        const context = canvas.getContext('2d');
+                        const grid = 15;
+                        const paddleHeight = grid * 5; // 80
+                        const maxPaddleY = canvas.height - grid - paddleHeight;
+
+                        var paddleSpeed = 6;
+                        var ballSpeed = 3;
+
+                        const leftPaddle = {
+                            // start in the middle of the game on the left side
+                            x: grid * 2,
+                            y: canvas.height / 2 - paddleHeight / 2,
+                            width: grid,
+                            height: paddleHeight,
+
+                            // paddle velocity
+                            dy: 0
+                        };
+                        const rightPaddle = {
+                            // start in the middle of the game on the right side
+                            x: canvas.width - grid * 3,
+                            y: canvas.height / 2 - paddleHeight / 2,
+                            width: grid,
+                            height: paddleHeight,
+
+                            // paddle velocity
+                            dy: 0
+                        };
+                        const ball = {
+                            // start in the middle of the game
+                            x: canvas.width / 2,
+                            y: canvas.height / 2,
+                            width: grid,
+                            height: grid,
+
+                            // keep track of when need to reset the ball position
+                            resetting: false,
+
+                            // ball velocity (start going to the top-right corner)
+                            dx: ballSpeed,
+                            dy: -ballSpeed
+                        };
+
+                        // check for collision between two objects using axis-aligned bounding box (AABB)
+                        // @see https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+                        function collides(obj1, obj2) {
+                            return obj1.x < obj2.x + obj2.width &&
+                                obj1.x + obj1.width > obj2.x &&
+                                obj1.y < obj2.y + obj2.height &&
+                                obj1.y + obj1.height > obj2.y;
+                        }
+
+                        // game loop
+                        function loop() {
+                            requestAnimationFrame(loop);
+                            context.clearRect(0,0,canvas.width,canvas.height);
+
+                            // move paddles by their velocity
+                            leftPaddle.y += leftPaddle.dy;
+                            rightPaddle.y += rightPaddle.dy;
+
+                            // prevent paddles from going through walls
+                            if (leftPaddle.y < grid) {
+                                leftPaddle.y = grid;
+                            }
+                            else if (leftPaddle.y > maxPaddleY) {
+                                leftPaddle.y = maxPaddleY;
+                            }
+
+                            if (rightPaddle.y < grid) {
+                                rightPaddle.y = grid;
+                            }
+                            else if (rightPaddle.y > maxPaddleY) {
+                                rightPaddle.y = maxPaddleY;
+                            }
+
+                            // draw paddles
+                            context.fillStyle = 'white';
+                            context.fillRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height);
+                            context.fillRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height);
+
+                            // move ball by its velocity
+                            ball.x += ball.dx;
+                            ball.y += ball.dy;
+
+                            // prevent ball from going through walls by changing its velocity
+                            if (ball.y < grid) {
+                                ball.y = grid;
+                                ball.dy *= -1;
+                            }
+                            else if (ball.y + grid > canvas.height - grid) {
+                                ball.y = canvas.height - grid * 2;
+                                ball.dy *= -1;
+                            }
+
+                            // reset ball if it goes past paddle (but only if we haven't already done so)
+                            if ( (ball.x < 0 || ball.x > canvas.width) && !ball.resetting) {
+                                ball.resetting = true;
+
+                                // give some time for the player to recover before launching the ball again
+                                setTimeout(() => {
+                                    ball.resetting = false;
+                                    ball.x = canvas.width / 2;
+                                    ball.y = canvas.height / 2;
+                                }, 400);
+                            }
+
+                            // check to see if ball collides with paddle. if they do change x velocity
+                            if (collides(ball, leftPaddle)) {
+                                ball.dx *= -1;
+
+                                // move ball next to the paddle otherwise the collision will happen again
+                                // in the next frame
+                                ball.x = leftPaddle.x + leftPaddle.width;
+                            }
+                            else if (collides(ball, rightPaddle)) {
+                                ball.dx *= -1;
+
+                                // move ball next to the paddle otherwise the collision will happen again
+                                // in the next frame
+                                ball.x = rightPaddle.x - ball.width;
+                            }
+
+                            // draw ball
+                            context.fillRect(ball.x, ball.y, ball.width, ball.height);
+
+                            // draw walls
+                            context.fillStyle = 'lightgrey';
+                            context.fillRect(0, 0, canvas.width, grid);
+                            context.fillRect(0, canvas.height - grid, canvas.width, canvas.height);
+
+                            // draw dotted line down the middle
+                            for (let i = grid; i < canvas.height - grid; i += grid * 2) {
+                                context.fillRect(canvas.width / 2 - grid / 2, i, grid, grid);
+                            }
+                        }
+
+                        // listen to keyboard events to move the paddles
+                        document.addEventListener('keydown', function(e) {
+
+                            // up arrow key
+                            if (e.which === 38) {
+                                rightPaddle.dy = -paddleSpeed;
+                            }
+                            // down arrow key
+                            else if (e.which === 40) {
+                                rightPaddle.dy = paddleSpeed;
+                            }
+
+                            // w key
+                            if (e.which === 87) {
+                                leftPaddle.dy = -paddleSpeed;
+                            }
+                            // a key
+                            else if (e.which === 83) {
+                                leftPaddle.dy = paddleSpeed;
+                            }
+                        });
+
+                        // listen to keyboard events to stop the paddle if key is released
+                        document.addEventListener('keyup', function(e) {
+                            if (e.which === 38 || e.which === 40) {
+                                rightPaddle.dy = 0;
+                            }
+
+                            if (e.which === 83 || e.which === 87) {
+                                leftPaddle.dy = 0;
+                            }
+                        });
+
+                        // start the game
+                        requestAnimationFrame(loop);
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 id="scrollspyHeading2" style="background-color: gainsboro">The Early Adoption of gaming as a family console, and the downfall of the gaming industry</h2>
+    <p>With the rising interest in home arcade systems, families became interested in bringing the experience home. Atari begun making consoles for the home such as the Atari 2600</p>
+    <img src="images/atari.png" style="width: 400px; height: auto">
+    <p>With consoles being marketed for the family, games were meant as a family activity or played by children.</p>
+    <p>Games during the time were lack-luster and were rushed quite often</p>
+    <p>The coding for the games was often rushed and many games being released were quite bad, with the final nail in the coffin being ET the video game</p>
+    <iframe src="https://giphy.com/embed/l2QE5kdfG6oSRDh5K" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+    <p>The video game crash marked an end of the era of home console gaming for the family</p>
+    <p>In order to capitalize on the idea of video games as a form of home media a new change was needed. </p>
+    <h2 id="scrollspyHeading3" style="background-color: gainsboro">Marketing games towards young males</h2>
+    <p>With the introduction of the Nintendo Entertainment System and the return of video games, the marketing department had to focus on a target audience</p>
+    <p>That audience was to be young boys, where a lot of the marketing and advertising for these games followed many of the ideas of hegemonic masculinity </p>
+    <p>These advertisements objectified women, and marketed games for boys, using the stereoptypes of it's time</p>
+    <p>There needed to be an end to the wild west era of gaming from the 70's and early 80's so by putting video game consoles in the boys section of stores and
+    focusing advertising on one demographic, consoles could become more profitable.</p>
+    <img src="images/toxic_game.jpg" style="width: 1300px; height: auto">
+    <br>
+    <strong> Publishers traveled to cities, held tournaments and got to see firsthand who was playing their games. "That was probably the first age of game demographic enlightenment," says Mika. The numbers were in: More boys were playing video games than girls. Video games were about to be reinvented.</strong>
+    <p>These types of marketing stunts for games like Contra and some racing games perpetuated the ideas of hegemonic masculinity and begun picturing women as objects and put these ideas into children at a young age. <p/>
+    <p>
+    Troy Deskins of Eastern Michigan University finds
+        <div class="container-lg">
+            <p>"In their research, Fox and Tang (2014) investigated what personality
+    traits, and demographic variables with level of video game play, would predict sexist
+    attitudes toward women who play video games. Participants were recruited through
+    online forums, blogs, and social media sites to participate in an online survey that
+    measured lifetime video game play, conformity to masculine norms, empathy, sexism and
+    social dominance orientation"</p>
+        </div>
+    <p>This was also the advent of video game media, with magazines and comic books showcasing game characters becoming more prominent</p>
+    <p>In a study regarding sexism in video games, Frontiers in Psychology notes "In video game magazines, over 80% of female characters are portrayed according to three types: sexualized, scantily clad, or vision of beauty, and over a quarter fit in all three categories"</p>
+    <p>Even in more family titles like Mario, the women in the games is always the damsel in distress and in many arcade titles, there is are oversexualized women, which influences young males who may spend many hours playing video games. However the injection model does come into scrutiny. Although boys may be the target audience, they aren't passive in viewing these titles. </p>
+    <img src="images/mario_magazine.jpg">
+    <p>As seen in nintendo power, there is this overall stereotypical masculinity when talking about Mario, whilst Princess Peach appears to be a damsel in distress whose purpose it merely to be saved </p>
+    <p>Troy Deskins notes in his study on sexism in games, "hostile sexism correlates with less offensiveness
+        and more with amusement. It was also shown that people high in benevolent sexism were
+        more offended and less amused at the messages."</p>
+
+
+    <h2 id="scrollspyHeading4" style="background-color: gainsboro">The evolution of the internet and the hostile online gaming atmosphere</h2>
+    <h3>The 90's and the evolution of gaming into a 3d world</h3>
+    <p>At this point, video games evolve and characters are now more than just pixels and feature voice acting and even 3D models. However this hyper realism and it's effects was something to be noted at the time.</p>
+    <p>One thing to note was the impressionability of younger children, which led to a fear of video games and a later adoption of the ESRB rating.</p>
+    <p>A 1998 journal found from viewing video games at the time " the video games
+        that are being played by today’s youth present an overwhelmingly traditional and negative portrayal of women and that the development of gender
+        identities and expectations among youngsters may be affected by these portrayals. For example , girls may expect that they will continue to be victims
+        and needy and that their responsibilities include maintaining beauty and
+        sexual appeal while boys may determine that their role is to protect and
+        defend women and to possessive them even through the use of violence"</p>
+
+    <p>During this time, violence and sex became more realistic, with video game depicitons of women not improving from the last decade</p>
+    <img src="images/lara.jpg">
+    <h3>Game Icons and Heroes and their Portrayals</h3>
+    <p>Games started to move away from nameless heroes and begain generating icons and heroes to look towards, similar to the comic book industry. This followed the examples of Dirty Harry or other vigilante examples where the player must resolve conflicts using whatever means necessary. There was also a sexist portrayal of the characters being shown. Dipicted above is the character Lara Croft from the game series Tomb Raider. Throughout the series of games she is hypersexualized whilst male characters of the time like Duke Nukem and Doom Guy depict Hegemonic Masculinity</p>
+    <img src="images/comparison.jpg" style="width: 700px"; height="auto">
+    <p>With the growing of online video games like World of Warcraft, Starcraft, Call of Duty and other titles, was a rise in harassment and bullying. In many of these online lobbies it was common to find misogony, racism, homophobia among other things. In it's growth it became almost expected to receive negative backlash whilst playing.</p>
+    <p>With fears of the influence of gaming on children, the ESRB rating system was introduced due to an unlicensed "Sex Mod" called hot coffee for the game Grand Theft Auto San Andreas, which enabled a previously unreleased sex feature in the game</p>
+    <img src="images/san.jpg">
+
+
+    <h2 id="scrollspyHeading5" style="background-color: gainsboro">Retaliations against this system and the rise of a new era</h2>
+    <p>Similar to the Grannie Pants example, there have been retaliations in recent times against the toxic masculinity displayed in the gaming Industry. Gamer gate was an example that led to a change in the dynamic of how characters in games are portrayed and the roles of women in video games. </p>
+    <p>Started by Zoe Quinn, #gamergate was meant to address the various notions of the video gaming space as a male only space, and the common ideas that games are made for males. At the time there was hypersexualization of female characters. Some examples in modern games included many of the characters from the game League of Legends. </p>
+    <h3>Here is a quick video on some of the tactics women have used similar to Grannie Pants to fight online harassment. ** Viewer Discretion is Advised!</h3>
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/tZMjGwjCAuQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <p>The idea that players are anonymous and can say what they want is not an "old glass in a new bottle" idea, but teaches new generations that being sexist and harassing players is a "normal" part of play, and players may assume their actions have no consequences. However in some cases we can see this violent behaviour going to far and translating to other medias</p>
+    <h3>Swatting and DOXING of Individuals</h3>
+    <p>In a recent times a new prank referred to as <strong>swatting</strong> has grown more popular. The prank involves viewers of a person livestreaming a game finding the location of the individual and calling in a fake police threat for a serious crime. The police will then respond by sending a swat team to the streamers house, often damaging goods and scaring the individual. Viewers of online live-streams (a new form of media where individuals will film themselves playing games or interacting with viewers live) have been known to find the locations of female streamers in order to harass or bully them and even send over these dangerous swat teams to their houses.</p>
+    <p>Gaming news Media "Polygon" notes a case of a female live-streamer who received constant targeted harassment after viewers were able to find her location</p>
+    <a href="https://www.polygon.com/2018/2/5/16896818/twitch-cjayride-taiwan-cj-ck-ban-facebook-doxing" ><img src="images/harass.jpg" style="display: block; margin-left: auto; margin-right: auto"></a>
+    <p>Incidents like this aren't uncommon, with many news outlets reporting on incidents similar to this</p>
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/DmftEF8FXTA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <h3>Legal Action being Taken</h3>
+    <p>With constant evidence of sexism and blatant misogyny in video games, many of the root causes as in the early stages of video games lies in the corporations. Major companies like Blizzard and Riot Games have been <a href="https://www.pcgamer.com/it-turns-out-riot-games-is-also-being-sued-by-the-same-agency-as-activision-blizzard/">facing recent lawsuits</a> regarding sexual harassment and an overall toxic work environment centered around hegemonic masculinity. Many of the characters featured in these game studio games follow the ideas of hegemonic masculinity such as Darius, Garen, and for the female end Sona and Lux as shown below</p>
+    <img src="images/league.jpg" style="display: block; margin-left: auto; margin-right: auto">
+    <p>Many of the male characters in these games are hyper masculine and use violence to act on their own will. Many of the women characters in the game are put into healer and supportive roles, where there role is more of a bystander. Typically these kinds of characters are hypersexualized, and could lead to younger gamers, being exposed to hegemonic masculinity.</p>
+    <p>With many of these companies and their practices being rooted in sexism, many women have begun to speak our regarding harassment</p>
+    <p>The guardian states in a story regarding sexism in gaming "Over the last two years, in a protracted and devastating #MeToo movement for the video games industry, hundreds of women have spoken out about the manipulative and predatory behaviour they have experienced in their video game careers. A 2018 investigation by games website Kotaku led to legal action at California developer Riot Games, where five former employees sued the company over workplace harassment and discrimination and hundreds more joined walkouts to protest"</p>
+
+    <a href="https://www.theguardian.com/games/2020/jul/22/is-the-video-games-industry-finally-reckoning-with-sexism"><img src="images/guardian.jpg" style="display: block; margin-left: auto; margin-right: auto"></a>
+    <br>
+    <p>With the initial marketing of video games towards a male audience and the objectification of women in games throughout the years, there has been a systemic issue at hand, with many of these issues with companies only being brought to the forefront in recent years.</p>
+    <br>
+    <h2>Conclusion</h2>
+    <p>In the course, we looked into how video games like Grand Theft Auto may affect a youths perception on the police, however predatory behaviours, misogyny, sexism and hate speech are now all too present in gaming</p>
+    <p>The #GamerGate movement, and many new lawsuits have begun to spring up due to these recent allegations. Gaming and the online space as a whole is moving towards being more inclusive, with games like Battlefield and Call of Duty allowing the player to chose female characters, and games like Life is Strange are beginning to feature </p>
+</div>
+</div>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <p class="text-muted">&copy; Ryan Matte: Created for the class Crime and the Media. Content is reflective of the lectures made by Professor Fletcher</p>
+        </div>
+    </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</body>
+</html>
